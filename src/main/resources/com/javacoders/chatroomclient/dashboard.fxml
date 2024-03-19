@@ -41,7 +41,7 @@
 <BorderPane fx:id="root"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.javacoders.chatroomclient.HelloController"
+            fx:controller="com.javacoders.chatroomclient.DashboardController"
             prefHeight="600" prefWidth="500">
 
     <right>

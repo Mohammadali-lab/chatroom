@@ -1,11 +1,7 @@
 package com.javacoders.chatroomclient;
 
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
-
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
 
@@ -33,7 +29,7 @@ public class Client {
         }
     }
 
-    public void receiveMessageFromServer(HelloController controller) {
+    public void receiveMessageFromServer(DashboardController controller) {
         new Thread(new Runnable() {
             @Override
             public void run() {

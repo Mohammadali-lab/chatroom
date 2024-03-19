@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="ap_username_input" prefHeight="200" prefWidth="400" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacoders.chatroomclient.UsernameInputController">
+<AnchorPane fx:id="ap_username_input" prefHeight="200" prefWidth="400" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacoders.chatroomclient.LoginController">
     <children>
         <TextField fx:id="tf_username" layoutX="30.0" layoutY="51.0" />
         <Label layoutX="200.0" layoutY="55.0" text="نام کاربری خود را وارد کنید:" />
