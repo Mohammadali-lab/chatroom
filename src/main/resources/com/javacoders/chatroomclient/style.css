@@ -17,13 +17,14 @@
 }
 
 #userList .list-cell:hover{
-    -fx-background-color: rgba(246, 246, 3, 0.45)
+    -fx-control-inner-background: rgba(250, 242, 89, 0.49);
 }
 
 
 #userList {
     -fx-focus-color: transparent;
-}
+    -fx-background-color: transparent;
+ }
 
 #bottomBox {
     -fx-padding: 10px; /* Add padding around the HBox */

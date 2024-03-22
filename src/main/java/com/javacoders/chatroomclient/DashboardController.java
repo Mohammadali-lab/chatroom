@@ -18,6 +18,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
@@ -38,92 +40,96 @@ public class DashboardController {
     @FXML
     private ListView<HBox> userList;
     private Client client;
+    private Socket socket;
+    private BufferedWriter bufferedWriter;
+    private BufferedReader bufferedReader;
     private String currentSessionName = "گروه";
     private Map<String, VBox> chatAreas = new HashMap<>();
 
 
+    public void setSocket(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter){
+        this.socket = socket;
+        this.bufferedWriter = bufferedWriter;
+        this.bufferedReader = bufferedReader;
+    }
+
+
     public void initialRoom(String username) {
-        try{
+
+        userList.setStyle("-fx-selection-bar: rgba(252,252,140,0.45);");
+        vbox_messages.setPrefHeight(0.85 * root.getHeight()); // 50% of parent's height
+        vbox_messages.setPrefWidth(0.7 * root.getWidth()); // 70% of parent's width
+
+        vbox_users.setPrefHeight(0.85 * root.getHeight()); // 50% of parent's height
+        vbox_users.setPrefWidth(0.3 * root.getWidth()); // 70% of parent's width
+
+        client = new Client(socket, bufferedReader, bufferedWriter);
+        System.out.println("Connected to server.");
+
+        HBox hBox = new HBox();
+        Text groupName = new Text("گروه");
+        Text groupMessageCount = new Text();
+        TextFlow textFlow = new TextFlow(groupMessageCount);
+        hBox.getChildren().add(textFlow);
+        hBox.getChildren().add(groupName);
+        hBox.setSpacing(10);
+        hBox.setAlignment(Pos.CENTER_RIGHT);
+        userList.getItems().add(hBox);
 
 
-            userList.setStyle("-fx-selection-bar: rgba(252,252,140,0.45);");
-            vbox_messages.setPrefHeight(0.85 * root.getHeight()); // 50% of parent's height
-            vbox_messages.setPrefWidth(0.7 * root.getWidth()); // 70% of parent's width
-
-            vbox_users.setPrefHeight(0.85 * root.getHeight()); // 50% of parent's height
-            vbox_users.setPrefWidth(0.3 * root.getWidth()); // 70% of parent's width
-
-            client = new Client(new Socket("localhost", 1234));
-            client.sendMessageToServer(username);
-            System.out.println("Connected to server.");
-
-            HBox hBox = new HBox();
-            Text groupName = new Text("گروه");
-            Text groupMessageCount = new Text();
-            TextFlow textFlow = new TextFlow(groupMessageCount);
-            hBox.getChildren().add(textFlow);
-            hBox.getChildren().add(groupName);
-            hBox.setSpacing(10);
-            hBox.setAlignment(Pos.CENTER_RIGHT);
-            userList.getItems().add(hBox);
+        chatAreas.put("گروه", new VBox());
 
 
-            chatAreas.put("گروه", new VBox());
+        // Listen for changes to the parent container's size
+        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+            vbox_messages.setPrefWidth(0.7 * newVal.doubleValue()); // Adjust width based on parent's width
+            vbox_users.setPrefWidth(0.3 * newVal.doubleValue()); // Adjust width based on parent's width
+        });
+
+        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+            vbox_messages.setPrefHeight(0.85 * newVal.doubleValue()); // Adjust height based on parent's height
+            vbox_users.setPrefHeight(0.85 * newVal.doubleValue()); // Adjust height based on parent's height
+        });
+
+        vbox_messages.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                sp_main.setVvalue((Double) newValue);
+            }
+        });
 
 
-            // Listen for changes to the parent container's size
-            root.widthProperty().addListener((obs, oldVal, newVal) -> {
-                vbox_messages.setPrefWidth(0.7 * newVal.doubleValue()); // Adjust width based on parent's width
-                vbox_users.setPrefWidth(0.3 * newVal.doubleValue()); // Adjust width based on parent's width
-            });
+        client.receiveMessageFromServer(this);
 
-            root.heightProperty().addListener((obs, oldVal, newVal) -> {
-                vbox_messages.setPrefHeight(0.85 * newVal.doubleValue()); // Adjust height based on parent's height
-                vbox_users.setPrefHeight(0.85 * newVal.doubleValue()); // Adjust height based on parent's height
-            });
+        button_send.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String messageToSend = tf_message.getText();
+                if (!messageToSend.isEmpty()) {
+                    HBox hBox = new HBox();
+                    hBox.setAlignment(Pos.CENTER_RIGHT);
+                    hBox.setPadding(new Insets(5, 5, 5, 10));
 
-            vbox_messages.heightProperty().addListener(new ChangeListener<Number>() {
-                @Override
-                public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                    sp_main.setVvalue((Double) newValue);
+                    Text text = new Text(messageToSend);
+                    TextFlow textFlow = new TextFlow(text);
+
+                    textFlow.setStyle("-fx-color: rgb(239,242,255);" +
+                            "-fx-background-color: rgb(15,125,242);" +
+                            "-fx-background-radius: 20px");
+
+                    textFlow.setPadding(new Insets(5, 10, 5, 10));
+                    text.setFill(Color.color(0.934, 0.945, 0.996));
+                    text.setFont(Font.font("IRANSansWeb",14));
+
+                    hBox.getChildren().add(textFlow);
+                    vbox_messages.getChildren().add(hBox);
+
+                    messageToSend = currentSessionName+":"+messageToSend;
+                    client.sendMessageToServer(messageToSend);
+                    tf_message.clear();
                 }
-            });
-
-
-            client.receiveMessageFromServer(this);
-
-            button_send.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    String messageToSend = tf_message.getText();
-                    if (!messageToSend.isEmpty()) {
-                        HBox hBox = new HBox();
-                        hBox.setAlignment(Pos.CENTER_RIGHT);
-                        hBox.setPadding(new Insets(5, 5, 5, 10));
-
-                        Text text = new Text(messageToSend);
-                        TextFlow textFlow = new TextFlow(text);
-
-                        textFlow.setStyle("-fx-color: rgb(239,242,255);" +
-                                "-fx-background-color: rgb(15,125,242);" +
-                                "-fx-background-radius: 20px");
-
-                        textFlow.setPadding(new Insets(5, 10, 5, 10));
-                        text.setFill(Color.color(0.934, 0.945, 0.996));
-                        text.setFont(Font.font("IRANSansWeb",14));
-
-                        hBox.getChildren().add(textFlow);
-                        vbox_messages.getChildren().add(hBox);
-
-                        messageToSend = currentSessionName+":"+messageToSend;
-                        client.sendMessageToServer(messageToSend);
-                        tf_message.clear();
-                    }
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            }
+        });
     }
 
     @FXML

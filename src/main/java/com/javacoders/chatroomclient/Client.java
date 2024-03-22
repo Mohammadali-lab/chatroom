@@ -9,14 +9,11 @@ public class Client {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
-    public Client(Socket socket) {
-        try {
-            this.socket = socket;
-            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (IOException e) {
-            closeEveryThing(socket, bufferedReader, bufferedWriter);
-        }
+    public Client(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
+
+        this.socket = socket;
+        this.bufferedWriter = bufferedWriter;
+        this.bufferedReader = bufferedReader;
     }
 
     public void sendMessageToServer(String messageToServer) {

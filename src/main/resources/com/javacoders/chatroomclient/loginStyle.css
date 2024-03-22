@@ -1,0 +1,43 @@
+/* Style for AnchorPane */
+#ap_username_input {
+    -fx-background-color: #aeeef8; /* Light gray background */
+    -fx-padding: 20px;
+}
+
+/* Style for TextField */
+#tf_username {
+    -fx-border-width: 3px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 100px;
+    -fx-background-color: #fffdfd; /* White background */
+    -fx-border-color: rgb(0, 167, 204); /* Light gray border */
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-family: "IRANSansWeb";
+    -fx-alignment: center-right;
+}
+
+/* Style for Label */
+#label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333; /* Dark gray text color */
+    -fx-font-family: "IRANSansWeb";
+}
+
+/* Style for Button */
+#button_submit {
+    -fx-font-size: 14px;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 100px;
+    -fx-background-color: #007bff; /* Blue background */
+    -fx-text-fill: #fff; /* White text color */
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-family: "IRANSansWeb";
+}
+
+/* Hover effect for Button */
+#button_submit:hover {
+    -fx-background-color: #0056b3; /* Darker blue background on hover */
+}
