@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3f9cee0-9d91-4ea9-accb-49c39368ea3b" name="Changes" comment="class names are refactored">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/javacoders/chatroomclient/loginStyle.css" afterDir="false" />
+    <list default="true" id="c3f9cee0-9d91-4ea9-accb-49c39368ea3b" name="Changes" comment="socket initialization moved to LoginController class from Main class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javacoders/chatroomclient/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/javacoders/chatroomclient/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/javacoders/chatroomclient/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/javacoders/chatroomclient/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/javacoders/chatroomclient/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -47,8 +44,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.App.executor": "Run",
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
+    "Maven.chatroom-client [clean,compile,package].executor": "Run",
     "Maven.chatroom-client [clean,package].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -61,6 +60,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6275862",
     "settings.editor.selected.configurable": "advanced.settings",
     "vue.rearranger.settings.migration": "true"
   }
@@ -71,7 +73,20 @@
       <recent name="C:\Users\MohammadAli\IdeaProjects\chatroom-client\src\main\resources\com\javacoders\chatroomclient" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.javacoders.chatroomclient.App" />
+      <module name="chatroom-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javacoders.chatroomclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.javacoders.chatroomclient.Main" />
       <module name="chatroom-client" />
@@ -85,6 +100,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_402-corretto-1.8.0_402-3183f394aec4-734fdc6e" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -97,7 +124,7 @@
       <workItem from="1710817899102" duration="15408000" />
       <workItem from="1710945724913" duration="7025000" />
       <workItem from="1710992841438" duration="14944000" />
-      <workItem from="1711092070052" duration="1001000" />
+      <workItem from="1711092070052" duration="8134000" />
     </task>
     <task id="LOCAL-00001" summary="graphical environment is implemented">
       <option name="closed" value="true" />
@@ -115,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710836211895</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="socket initialization moved to LoginController class from Main class">
+      <option name="closed" value="true" />
+      <created>1711093451805</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711093451805</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,7 +159,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="graphical environment is implemented" />
     <MESSAGE value="class names are refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="class names are refactored" />
+    <MESSAGE value="socket initialization moved to LoginController class from Main class" />
+    <option name="LAST_COMMIT_MESSAGE" value="socket initialization moved to LoginController class from Main class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
