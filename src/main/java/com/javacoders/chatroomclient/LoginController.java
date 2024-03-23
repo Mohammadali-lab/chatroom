@@ -32,8 +32,8 @@ public class LoginController {
 
     // Create a Timeline animation to return border color to original after a delay
     private Timeline toBlack;
-
     private Timeline toRed;
+    private Timeline toBlackBorder;
 
 
     private UsernameEnteredListener listener;
@@ -77,14 +77,22 @@ public class LoginController {
                 bufferedWriter.flush();
                 response = bufferedReader.readLine();
                 if(response.equals("error")){
-                    if(toBlack == null)
+                    if(toBlack == null) {
                         toBlack = new Timeline(
-                                new KeyFrame(Duration.seconds(1), new KeyValue(label.textFillProperty(), javafx.scene.paint.Color.BLACK)));
+                                new KeyFrame(Duration.seconds(1), new KeyValue(label.textFillProperty(),
+                                        javafx.scene.paint.Color.BLACK)));
+                        toBlackBorder = new Timeline(
+                                new KeyFrame(Duration.seconds(0.1), new KeyValue(tf_username.styleProperty(),
+                                        "-fx-border-color: rgb(0, 167, 204)"))
+                        );
+                    }
                     hbox.setLayoutX(30);
                     tf_username.setVisible(true);
                     button_submit.setText("ثبت");
                     label.setTextFill(Paint.valueOf("RED"));
+                    tf_username.setStyle("-fx-border-color: RED");
                     toBlack.play();
+                    toBlackBorder.play();
                     label.setText("این نام کاربری قبلا ثبت شده است. آن را تغییر دهید:");
                 } else {
                     // Notify the listener with the entered username

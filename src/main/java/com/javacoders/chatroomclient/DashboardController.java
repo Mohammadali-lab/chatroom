@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -56,7 +57,22 @@ public class DashboardController {
 
     public void initialRoom(String username) {
 
-        userList.setStyle("-fx-selection-bar: rgba(252,252,140,0.45);");
+
+        // Set a custom cell factory to handle null items
+        userList.setCellFactory(param -> new ListCell<HBox>() {
+            @Override
+            protected void updateItem(HBox item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                    getStyleClass().add("null-cell");
+                } else {
+                    setGraphic(item);
+                    getStyleClass().remove("null-cell");
+                }
+            }
+        });
         vbox_messages.setPrefHeight(0.85 * root.getHeight()); // 50% of parent's height
         vbox_messages.setPrefWidth(0.7 * root.getWidth()); // 70% of parent's width
 
@@ -76,9 +92,15 @@ public class DashboardController {
         hBox.setAlignment(Pos.CENTER_RIGHT);
         userList.getItems().add(hBox);
 
-
         chatAreas.put("گروه", new VBox());
 
+
+        // Add event handler for Enter key press in TextField
+        tf_message.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                button_send.fire(); // Fire the button action
+            }
+        });
 
         // Listen for changes to the parent container's size
         root.widthProperty().addListener((obs, oldVal, newVal) -> {

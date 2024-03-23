@@ -42,10 +42,10 @@
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.javacoders.chatroomclient.DashboardController"
-            prefHeight="600" prefWidth="500">
+            prefHeight="600" prefWidth="400">
 
     <right>
-        <VBox fx:id="vbox_users"  spacing="10">
+        <VBox fx:id="vbox_users">
             <ListView fx:id="userList" onMouseClicked="#userSelected" VBox.vgrow="ALWAYS"/>
         </VBox>
     </right>
