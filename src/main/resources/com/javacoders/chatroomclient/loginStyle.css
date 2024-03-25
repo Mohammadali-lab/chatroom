@@ -6,14 +6,11 @@
 
 /* Style for TextField */
 #tf_username {
-    -fx-border-width: 3px;
+    -fx-border-width: 2px;
     -fx-font-size: 14px;
-    -fx-pref-height: 30px;
-    -fx-pref-width: 100px;
     -fx-background-color: #fffdfd; /* White background */
     -fx-border-color: rgb(0, 167, 204); /* Light gray border */
     -fx-border-radius: 5px;
-    -fx-padding: 5px;
     -fx-font-family: "IRANSansWeb";
     -fx-alignment: center-right;
 }

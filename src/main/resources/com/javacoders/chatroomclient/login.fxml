@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
-<AnchorPane fx:id="ap_username_input" prefHeight="200" prefWidth="500" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacoders.chatroomclient.LoginController">
+<AnchorPane fx:id="ap_username_input" prefHeight="200" prefWidth="560" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacoders.chatroomclient.LoginController">
     <children>
         <HBox fx:id="hbox" spacing="10" layoutX="100.0" layoutY="50.0">
             <TextField fx:id="tf_username"/>
             <Label fx:id="label" text="نام کاربری خود را وارد کنید:"/>
         </HBox>
-        <Button fx:id="button_submit" layoutX="200.0" layoutY="117.0" mnemonicParsing="false" onAction="#submitUsername" text="ثبت" />
+        <Button fx:id="button_submit" layoutX="230.0" layoutY="117.0" mnemonicParsing="false" onAction="#submitUsername" text="ثبت" />
     </children>
 </AnchorPane>

@@ -91,6 +91,7 @@ public class DashboardController {
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER_RIGHT);
         userList.getItems().add(hBox);
+        userList.getSelectionModel().selectFirst();
 
         chatAreas.put("گروه", new VBox());
 

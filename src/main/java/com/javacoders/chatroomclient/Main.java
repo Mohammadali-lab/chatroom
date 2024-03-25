@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -17,6 +18,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream( "logo.png" )));
 
         String fontPath = "IRANSansWeb.ttf";
         Font.loadFont(getClass().getResourceAsStream(fontPath),14);

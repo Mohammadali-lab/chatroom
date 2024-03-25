@@ -104,7 +104,7 @@ public class LoginController {
                 toRed = new Timeline(
                         new KeyFrame(Duration.seconds(0.5), new KeyValue(label.textFillProperty(), javafx.scene.paint.Color.RED)));
             label.setText("عدم اتصال به سرور");
-            hbox.setLayoutX(80);
+            hbox.setLayoutX(40);
             label.setTextFill(Paint.valueOf("BLACK"));
             toRed.play();
             button_submit.setText("تلاش مجدد");
