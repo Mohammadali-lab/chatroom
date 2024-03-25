@@ -147,7 +147,7 @@ public class DashboardController {
                     hBox.getChildren().add(textFlow);
                     vbox_messages.getChildren().add(hBox);
 
-                    messageToSend = currentSessionName+":"+messageToSend;
+                    messageToSend = currentSessionName+"`:`"+messageToSend;
                     client.sendMessageToServer(messageToSend);
                     tf_message.clear();
                 }
@@ -202,7 +202,7 @@ public class DashboardController {
     public void addLabel(String msgFromServer) {
 
         boolean isServer = false;
-        String[] userAndMsg = msgFromServer.split(":");
+        String[] userAndMsg = msgFromServer.split("`:`");
         VBox vBox;
         if(userAndMsg[0].equals("سرور")){
             isServer = true;
