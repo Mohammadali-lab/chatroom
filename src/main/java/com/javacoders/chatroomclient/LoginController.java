@@ -83,7 +83,7 @@ public class LoginController {
                                         javafx.scene.paint.Color.BLACK)));
                         toBlackBorder = new Timeline(
                                 new KeyFrame(Duration.seconds(0.1), new KeyValue(tf_username.styleProperty(),
-                                        "-fx-border-color: rgb(0, 167, 204)"))
+                                        "-fx-border-color: rgba(252, 181, 87, 0.47)"))
                         );
                     }
                     hbox.setLayoutX(30);

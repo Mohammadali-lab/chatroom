@@ -1,6 +1,6 @@
 /* Style for AnchorPane */
 #ap_username_input {
-    -fx-background-color: #aeeef8; /* Light gray background */
+    -fx-background-color: rgba(252, 230, 87, 0.47); /* Light gray background */
     -fx-padding: 20px;
 }
 
@@ -9,7 +9,7 @@
     -fx-border-width: 2px;
     -fx-font-size: 14px;
     -fx-background-color: #fffdfd; /* White background */
-    -fx-border-color: rgb(0, 167, 204); /* Light gray border */
+    -fx-border-color: rgba(252, 181, 87, 0.47); /* Light gray border */
     -fx-border-radius: 5px;
     -fx-font-family: "IRANSansWeb";
     -fx-alignment: center-right;
@@ -27,7 +27,7 @@
     -fx-font-size: 14px;
     -fx-pref-height: 30px;
     -fx-pref-width: 100px;
-    -fx-background-color: #007bff; /* Blue background */
+    -fx-background-color: rgb(107, 45, 34); /* Blue background */
     -fx-text-fill: #fff; /* White text color */
     -fx-border-radius: 5px;
     -fx-padding: 5px;
@@ -36,5 +36,5 @@
 
 /* Hover effect for Button */
 #button_submit:hover {
-    -fx-background-color: #0056b3; /* Darker blue background on hover */
+    -fx-background-color: rgb(66, 28, 22); /* Darker blue background on hover */
 }

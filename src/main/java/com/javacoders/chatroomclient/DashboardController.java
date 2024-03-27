@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -17,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 import java.io.BufferedReader;
@@ -135,6 +137,7 @@ public class DashboardController {
 
                     Text text = new Text(messageToSend);
                     TextFlow textFlow = new TextFlow(text);
+                    textFlow.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
                     textFlow.setStyle("-fx-color: rgb(239,242,255);" +
                             "-fx-background-color: rgb(15,125,242);" +
@@ -262,8 +265,9 @@ public class DashboardController {
             text.setFont(Font.font("IRANSansWeb",14));
             text.setFill(Color.color(0.934, 0.945, 0.996));
             TextFlow textFlow = new TextFlow(text);
+            textFlow.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
             textFlow.setStyle("-fx-background-color: rgb(201,78,252);" +
-                    "-fx-background-radius: 20px");
+                    "-fx-background-radius: 20px;");
             textFlow.setPadding(new Insets(5, 10, 5, 10));
             hBox.getChildren().add(textFlow);
         }

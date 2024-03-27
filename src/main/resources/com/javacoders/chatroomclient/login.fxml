@@ -7,8 +7,15 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane fx:id="ap_username_input" prefHeight="200" prefWidth="560" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javacoders.chatroomclient.LoginController">
     <children>
+        <ImageView fx:id="imageView" fitHeight="100" fitWidth="100" layoutX="230" layoutY="50">
+            <image>
+                <Image url="@logo.png"/>
+            </image>
+        </ImageView>
         <HBox fx:id="hbox" spacing="10" layoutX="100.0" layoutY="50.0">
             <TextField fx:id="tf_username"/>
             <Label fx:id="label" text="نام کاربری خود را وارد کنید:"/>
