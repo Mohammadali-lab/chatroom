@@ -69,8 +69,8 @@ public class LoginController {
                 String response;
                 if(socket == null){
                     socket = new Socket("localhost", 4321);
-                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(),"UTF-8"));
+                    bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
                 }
                 bufferedWriter.write(username);
                 bufferedWriter.newLine();

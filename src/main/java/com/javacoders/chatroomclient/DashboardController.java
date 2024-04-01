@@ -150,7 +150,10 @@ public class DashboardController {
                     hBox.getChildren().add(textFlow);
                     vbox_messages.getChildren().add(hBox);
 
-                    messageToSend = currentSessionName+"`:`"+messageToSend;
+                    if(currentSessionName.equals("گروه"))
+                        messageToSend = "group`:`"+messageToSend;
+                    else
+                        messageToSend = currentSessionName+"`:`"+messageToSend;
                     client.sendMessageToServer(messageToSend);
                     tf_message.clear();
                 }
@@ -187,16 +190,18 @@ public class DashboardController {
             @Override
             public void run() {
                 for(String member: members){
-                    chatAreas.put(member, new VBox());
-                    HBox hBox = new HBox();
-                    Text username = new Text(member);
-                    Text messageCount = new Text();
-                    TextFlow textFlow = new TextFlow(messageCount);
-                    hBox.getChildren().add(textFlow);
-                    hBox.getChildren().add(username);
-                    hBox.setSpacing(10);
-                    hBox.setAlignment(Pos.CENTER_RIGHT);
-                    userList.getItems().add(hBox);
+                    if(!chatAreas.containsKey(member)){
+                        chatAreas.put(member, new VBox());
+                        HBox hBox = new HBox();
+                        Text username = new Text(member);
+                        Text messageCount = new Text();
+                        TextFlow textFlow = new TextFlow(messageCount);
+                        hBox.getChildren().add(textFlow);
+                        hBox.getChildren().add(username);
+                        hBox.setSpacing(10);
+                        hBox.setAlignment(Pos.CENTER_RIGHT);
+                        userList.getItems().add(hBox);
+                    }
                 }
             }
         });
@@ -207,9 +212,22 @@ public class DashboardController {
         boolean isServer = false;
         String[] userAndMsg = msgFromServer.split("`:`");
         VBox vBox;
-        if(userAndMsg[0].equals("سرور")){
+        if(userAndMsg[0].equals("group")){
+            userAndMsg[0] = "گروه";
+        }
+        if(userAndMsg[0].equals("join")){
             isServer = true;
             userAndMsg[0] = "گروه";
+            userAndMsg[1]+=" به گروه پیوست";
+        }
+        if(userAndMsg[0].equals("left")){
+            isServer = true;
+            userAndMsg[0] = "گروه";
+            userAndMsg[1]+=" گروه را ترک کرد";
+        }
+        if(userAndMsg[0].equals("doesn't exist")){
+            userAndMsg[0] = userAndMsg[1];
+            userAndMsg[1] = "این پیام از سمت سرور است. کاربر " + userAndMsg[0] + " دیگر وجود ندارد";
         }
 
         vBox = chatAreas.get(userAndMsg[0]);
